@@ -1,0 +1,43 @@
+John Doe
+Full-Stack Developer
+
+EXPERIENCE:
+Senior Software Engineer at TechCorp (2021-2024)
+- Developed and maintained React applications serving 100,000+ users
+- Built RESTful APIs using Node.js and Express, improving response time by 40%
+- Implemented MongoDB database solutions, reducing query time by 25%
+- Deployed applications using Docker and AWS, achieving 99.9% uptime
+- Led a team of 5 developers on multiple projects
+
+Software Developer at StartupXYZ (2019-2021)
+- Created responsive web applications using React and TailwindCSS
+- Developed backend services with Python and FastAPI
+- Integrated third-party APIs and payment systems
+- Improved application performance by 30% through code optimization
+
+EDUCATION:
+Bachelor of Science in Computer Science
+University of Technology (2015-2019)
+
+TECHNICAL SKILLS:
+- Frontend: React, JavaScript, HTML, CSS, TailwindCSS
+- Backend: Node.js, Express, Python, FastAPI
+- Databases: MongoDB, PostgreSQL
+- DevOps: Docker, AWS, Git
+- Other: RESTful APIs, Agile methodology
+
+PROJECTS:
+E-commerce Platform (2023)
+- Built a full-stack e-commerce application using React and Node.js
+- Implemented secure payment processing and user authentication
+- Deployed on AWS with automated CI/CD pipeline
+
+Task Management App (2022)
+- Developed a collaborative task management tool
+- Used React for frontend and Express for backend
+- Integrated real-time notifications using WebSockets
+
+ACHIEVEMENTS:
+- Increased team productivity by 35% through process improvements
+- Reduced application load time by 50% through optimization
+- Successfully delivered 15+ projects on time and within budget

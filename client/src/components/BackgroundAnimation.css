@@ -1,0 +1,27 @@
+/* Performance optimizations for background animations */
+.background-animation-canvas {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .background-animation-canvas {
+    display: none;
+  }
+}
+
+/* Optimize for mobile devices */
+@media (max-width: 768px) {
+  .background-animation-canvas {
+    opacity: 0.5;
+  }
+}
+
+/* Ensure smooth animations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

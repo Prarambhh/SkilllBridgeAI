@@ -86,7 +86,87 @@ function auth(req, res, next) {
 }
 
 // Skills and jobs (static scaffold)
-const ALL_SKILLS = ['JavaScript','React','Node.js','Express','MongoDB','Python','FastAPI','Docker','AWS','NLP','TailwindCSS']
+const ALL_SKILLS = [
+  // Programming Languages
+  'JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'C#', 'Go', 'Rust', 'PHP', 'Ruby', 
+  'Swift', 'Kotlin', 'Scala', 'R', 'MATLAB', 'Dart', 'Elixir', 'Haskell', 'Clojure',
+  
+  // Frontend Frameworks & Libraries
+  'React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'Gatsby', 'Remix', 'Solid.js',
+  'jQuery', 'Alpine.js', 'Lit', 'Stencil', 'Ember.js',
+  
+  // Backend Frameworks
+  'Node.js', 'Express', 'FastAPI', 'Django', 'Flask', 'Spring', 'Spring Boot', 'ASP.NET',
+  'Laravel', 'Symfony', 'Rails', 'Sinatra', 'Gin', 'Echo', 'Fiber', 'Actix', 'Phoenix',
+  
+  // Mobile Development
+  'React Native', 'Flutter', 'Ionic', 'Xamarin', 'Cordova', 'NativeScript',
+  
+  // Databases
+  'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Elasticsearch', 'Cassandra',
+  'DynamoDB', 'Firebase', 'Supabase', 'CouchDB', 'Neo4j', 'InfluxDB', 'MariaDB',
+  
+  // Cloud Platforms & Services
+  'AWS', 'Azure', 'GCP', 'Heroku', 'Vercel', 'Netlify', 'DigitalOcean', 'Linode',
+  'Cloudflare', 'Oracle Cloud', 'IBM Cloud',
+  
+  // DevOps & Infrastructure
+  'Docker', 'Kubernetes', 'Terraform', 'Ansible', 'Jenkins', 'GitLab CI', 'GitHub Actions',
+  'CircleCI', 'Travis CI', 'Helm', 'Vagrant', 'Prometheus', 'Grafana', 'ELK Stack',
+  'Nginx', 'Apache', 'HAProxy', 'Consul', 'Vault',
+  
+  // Data Science & ML
+  'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'TensorFlow', 'PyTorch',
+  'Keras', 'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Plotly',
+  'Jupyter', 'Apache Spark', 'Hadoop', 'Airflow', 'MLflow', 'Kubeflow', 'OpenCV',
+  'NLTK', 'spaCy', 'Hugging Face', 'LangChain', 'OpenAI', 'Anthropic',
+  
+  // Web Technologies
+  'HTML', 'CSS', 'Sass', 'Less', 'PostCSS', 'TailwindCSS', 'Bootstrap', 'Bulma',
+  'Material-UI', 'Ant Design', 'Chakra UI', 'Mantine', 'Styled Components',
+  
+  // Build Tools & Bundlers
+  'Webpack', 'Vite', 'Rollup', 'Parcel', 'esbuild', 'Turbopack', 'Snowpack',
+  'Gulp', 'Grunt', 'Babel', 'ESLint', 'Prettier',
+  
+  // Testing
+  'Testing', 'Jest', 'Cypress', 'Playwright', 'Selenium', 'Mocha', 'Chai', 'Jasmine',
+  'React Testing Library', 'Vue Test Utils', 'PyTest', 'JUnit', 'TestNG', 'Postman',
+  
+  // Version Control & Collaboration
+  'Git', 'GitHub', 'GitLab', 'Bitbucket', 'SVN', 'Mercurial',
+  
+  // API Technologies
+  'REST', 'GraphQL', 'gRPC', 'WebSockets', 'Socket.io', 'tRPC', 'Apollo GraphQL',
+  'Prisma', 'TypeORM', 'Sequelize', 'Mongoose', 'SQLAlchemy', 'Hibernate',
+  
+  // Methodologies & Practices
+  'Agile', 'Scrum', 'Kanban', 'DevOps', 'CI/CD', 'TDD', 'BDD', 'Microservices',
+  'Serverless', 'JAMstack', 'Event-Driven Architecture', 'Domain-Driven Design',
+  
+  // Operating Systems & Tools
+  'Linux', 'Ubuntu', 'CentOS', 'macOS', 'Windows', 'Bash', 'PowerShell', 'Zsh',
+  'Vim', 'VS Code', 'IntelliJ', 'Eclipse', 'Xcode',
+  
+  // Blockchain & Web3
+  'Blockchain', 'Ethereum', 'Solidity', 'Web3', 'Smart Contracts', 'DeFi', 'NFT',
+  
+  // Security
+  'Cybersecurity', 'OAuth', 'JWT', 'SSL/TLS', 'OWASP', 'Penetration Testing',
+  
+  // Business Intelligence & Analytics
+  'Tableau', 'Power BI', 'Looker', 'Google Analytics', 'Mixpanel', 'Amplitude',
+  
+  // Content Management
+  'WordPress', 'Drupal', 'Joomla', 'Strapi', 'Contentful', 'Sanity',
+  
+  // Game Development
+  'Unity', 'Unreal Engine', 'Godot', 'Phaser', 'Three.js',
+  
+  // Emerging Technologies
+  'AI', 'Artificial Intelligence', 'Generative AI', 'ChatGPT', 'LLM', 'Prompt Engineering',
+  'IoT', 'Edge Computing', 'Quantum Computing', 'AR/VR', 'WebAssembly'
+]
 const JOB_ROLES = ['Frontend Developer','Backend Developer','Full-Stack Developer','ML Engineer','Data Scientist']
 
 app.get('/api/meta/skills', (req, res) => res.json({ skills: ALL_SKILLS }))
@@ -143,7 +223,7 @@ app.post('/api/ai/skill-gap', auth, async (req, res) => {
     } else if (role.includes('ml')) {
       desired = ['Python','NLP','Docker','AWS']
     } else if (role.includes('data') && role.includes('scientist')) {
-      desired = ['Python','NLP','AWS','MongoDB']
+      desired = ['Python','Machine Learning','Pandas','NumPy','SQL','Jupyter','Scikit-learn','NLP','AWS','MongoDB']
     } else {
       desired = ['React','Node.js','MongoDB','Docker','AWS']
     }
@@ -166,16 +246,63 @@ app.post('/api/ai/roadmap', auth, async (req, res) => {
 
 // Resume analysis: upload PDF and analyze content
 app.post('/api/ai/resume/analyze', auth, upload.single('file'), async (req, res) => {
+  console.log('=== RESUME ANALYSIS REQUEST RECEIVED ===')
+  console.log('User:', req.user?.email)
+  console.log('File info:', req.file ? {
+    originalname: req.file.originalname,
+    mimetype: req.file.mimetype,
+    size: req.file.size
+  } : 'NO FILE')
+  console.log('Target role:', req.body.targetRole)
+  console.log('Request headers:', req.headers)
+  
   const targetRole = (req.body?.targetRole || null)
-  if (!req.file) return res.status(400).json({ error: 'No file uploaded' })
-  // Always try to parse the PDF first so we can use text even in fallback
+  if (!req.file) {
+    console.log('❌ No file uploaded')
+    return res.status(400).json({ error: 'No file uploaded' })
+  }
+  // Try to extract text from the uploaded file
   let text = ''
-  try {
-    const pdfParse = require('pdf-parse')
-    const parsed = await pdfParse(req.file.buffer)
-    text = (parsed.text || '').slice(0, 20000)
-  } catch (parseErr) {
-    console.warn('PDF parse failed; continuing with filename-only fallback:', parseErr?.message)
+  
+  // Check if it's a text file first
+  if (req.file.mimetype === 'text/plain' || req.file.originalname.endsWith('.txt')) {
+    text = req.file.buffer.toString('utf-8').slice(0, 20000)
+    console.log('Text file processed, text length:', text.length)
+  } else if (req.file.mimetype === 'application/pdf') {
+    try {
+      // Use pdfjs-dist for PDF parsing
+      const pdfjsLib = await import('pdfjs-dist');
+      
+      console.log('PDF.js loaded successfully');
+      
+      // Get getDocument from default export
+      const pdfjs = pdfjsLib.default || pdfjsLib;
+      
+      // Load the PDF document - convert Buffer to Uint8Array
+      const uint8Array = new Uint8Array(req.file.buffer);
+      const loadingTask = pdfjs.getDocument({
+        data: uint8Array,
+        verbosity: 0
+      });
+      const pdf = await loadingTask.promise;
+      
+      console.log('PDF loaded, pages:', pdf.numPages)
+      
+      // Extract text from all pages
+      let fullText = ''
+      for (let pageNum = 1; pageNum <= Math.min(pdf.numPages, 10); pageNum++) {
+        const page = await pdf.getPage(pageNum)
+        const textContent = await page.getTextContent()
+        const pageText = textContent.items.map(item => item.str).join(' ')
+        fullText += pageText + ' '
+      }
+      
+      text = fullText.slice(0, 20000)
+      console.log('PDF parsed successfully, text length:', text.length)
+    } catch (parseErr) {
+      console.warn('PDF parse failed; continuing with filename-only fallback:', parseErr?.message)
+      console.warn('Full error:', parseErr)
+    }
   }
 
   // Try AI service with parsed text
@@ -423,6 +550,7 @@ app.post('/api/ai/interview/score', auth, async (req, res) => {
 
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }))
+app.get('/health', (req, res) => res.json({ status: 'ok' }))
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
